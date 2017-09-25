@@ -2,7 +2,7 @@
  * jQuery IFrame AJAX
  * @see https://github.com/paulzi/jquery-iframe-ajax
  * @license MIT (https://github.com/paulzi/jquery-iframe-ajax/blob/master/LICENSE)
- * @version 1.0.1
+ * @version 1.0.2
  */
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
@@ -10,13 +10,13 @@
     define(["jquery"], function (a0) {
       return (factory(a0));
     });
-  } else if (typeof exports === 'object') {
+  } else if (typeof module === 'object' && module.exports) {
     // Node. Does not work with strict CommonJS, but
     // only CommonJS-like environments that support module.exports,
     // like Node.
     module.exports = factory(require("jquery"));
   } else {
-    factory(root.jQuery);
+    factory(root["root.jQuery"]);
   }
 }(this, function ($) {
 
@@ -131,7 +131,7 @@ $.ajaxTransport('+*', function(options) {
                             headers = headers ? type + "\r\n" + headers : type;
                         }
                         var content;
-                        if ($textarea.size()) {
+                        if ($textarea.count) {
                             content = {text: $textarea.val()};
                         } else {
                             content = {
@@ -183,5 +183,6 @@ $.ajaxTransport('+*', function(options) {
         }
     };
 });
+
 
 }));
